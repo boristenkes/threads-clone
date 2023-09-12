@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { threadIcons } from '@/constants'
+import { formatDateString } from '@/lib/utils'
 
 type Props = {
 	id: string
@@ -57,7 +58,7 @@ export default function ThreadCard({
 								alt={author?.name}
 								width={44}
 								height={44}
-								className='rounded-full object-cover'
+								className='rounded-full object-cover h-11 w-11'
 							/>
 						</Link>
 						<div className='thread-card_bar' />
@@ -95,7 +96,26 @@ export default function ThreadCard({
 						</div>
 					</div>
 				</div>
+				{/* TODO: Delete thread */}
+				{/* TODO: Show comment logos */}
 			</div>
+			{!isComment && community && (
+				<Link
+					href={`/communities/${community.id}`}
+					className='mt-5 flex items-center'
+				>
+					<p className='text-subtle-medium text-gray-1'>
+						{formatDateString(createdAt)} • {community.name}
+					</p>
+					<Image
+						src={community.image}
+						alt={community.name}
+						width={14}
+						height={14}
+						className='ml-1 rounded-full object-cover'
+					/>
+				</Link>
+			)}
 		</article>
 	)
 }

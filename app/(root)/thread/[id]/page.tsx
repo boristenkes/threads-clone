@@ -40,7 +40,7 @@ export default async function ThreadDetails({ params: { id } }: Props) {
 				<Comment
 					threadId={thread._id}
 					currentUserImg={userInfo.image}
-					currentUserId={userInfo._id}
+					currentUserId={JSON.stringify(userInfo._id)}
 				/>
 			</div>
 			<div className='mt-10'>
